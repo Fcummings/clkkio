@@ -43,20 +43,20 @@ export default function CLKKFintechLanding() {
 
   const faqs = [
     {
-      question: "How does CLKK ensure transaction security?",
-      answer: "CLKK utilizes advanced encryption and blockchain technology to ensure all transactions are secure, transparent, and immutable."
+      question: "How does CLKK connect to PayPal and Venmo?",
+      answer: "CLKK securely integrates with PayPal and Venmo through their official APIs, allowing you to send money directly from your CLKK master wallet to any PayPal or Venmo account."
     },
     {
-      question: "Can CLKK integrate with existing POS systems?",
-      answer: "Yes, CLKK is designed to seamlessly integrate with most modern POS systems, making adoption easy for businesses."
+      question: "Are there fees for sending to PayPal and Venmo?",
+      answer: "CLKK offers competitive rates for cross-platform transfers. Standard CLKK-to-CLKK transfers remain free, while PayPal and Venmo transfers have minimal fees."
     },
     {
-      question: "What are the fees associated with using CLKK?",
-      answer: "CLKK offers competitive rates with no hidden fees. Businesses pay a small percentage per transaction, significantly lower than traditional payment processors."
+      question: "How quickly do PayPal and Venmo transfers process?",
+      answer: "Transfers to PayPal and Venmo accounts are typically instant, though processing times may vary based on the receiving platform's policies."
     },
     {
-      question: "How quickly are funds available after a transaction?",
-      answer: "With CLKK, funds are available instantly. Our real-time settlement ensures you have access to your money immediately after each transaction."
+      question: "Can I receive money from PayPal and Venmo in my CLKK wallet?",
+      answer: "Currently, CLKK supports sending money to PayPal and Venmo accounts. Receiving capabilities from these platforms are coming soon to complete the master wallet experience."
     }
   ];
 
@@ -90,7 +90,7 @@ export default function CLKKFintechLanding() {
             <span className="shine-animation">Next-Generation Payments</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl">
-            Experience seamless, secure, and instant financial transactions with CLKK's innovative platform.
+            Your master wallet for seamless payments. Send money to PayPal, Venmo, and any CLKK user instantly.
           </p>
           <Link to="/signup">
             <Button className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-6">
@@ -106,7 +106,7 @@ export default function CLKKFintechLanding() {
           <h2 className="mb-12 text-center text-4xl font-bold">Why Choose CLKK?</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Logo, title: "Instant Payments", description: "Real-time transactions and settlements" },
+              { icon: Logo, title: "Master Wallet", description: "One wallet to rule them all - send to PayPal, Venmo, and more" },
               { icon: Smartphone, title: "User-Friendly", description: "Intuitive mobile app for seamless payments" },
               { icon: BarChart, title: "Business Insights", description: "Advanced analytics for informed decisions" },
               { icon: Shield, title: "Secure & Compliant", description: "Bank-grade security and regulatory compliance" }
@@ -142,7 +142,7 @@ export default function CLKKFintechLanding() {
               </div>
               <h3 className="text-xl font-bold mb-4">Instant Peer-to-Peer</h3>
               <p className="text-gray-300">
-                Send money to friends and family instantly, with no fees. Split bills, share expenses in seconds.
+                Send money to any PayPal or Venmo account instantly from your CLKK master wallet. Split bills across platforms effortlessly.
               </p>
             </div>
 
@@ -162,7 +162,7 @@ export default function CLKKFintechLanding() {
               </div>
               <h3 className="text-xl font-bold mb-4">Universal Acceptance</h3>
               <p className="text-gray-300">
-                Use CLKK anywhere at a growing network of businesses.
+                Connect to PayPal, Venmo, and CLKK's growing network. One wallet, unlimited possibilities.
               </p>
             </div>
           </div>
@@ -226,10 +226,10 @@ export default function CLKKFintechLanding() {
           <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
             <div className="w-full md:w-1/2 space-y-4">
               {[
-                "Download the CLKK app",
-                "Link your payment method",
-                "Scan QR code or tap to pay",
-                "Enjoy instant transaction settlement"
+                "Download the CLKK master wallet app",
+                "Connect your PayPal and Venmo accounts",
+                "Send money across platforms instantly",
+                "Manage all your payments from one place"
               ].map((step, index) => (
                 <div key={index} className="flex items-center space-x-4 bg-gray-700 p-4 rounded-lg">
                   <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
@@ -281,7 +281,7 @@ export default function CLKKFintechLanding() {
       <section className="w-full py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="mb-8 text-4xl font-bold">Ready to Transform Your Payment Experience?</h2>
-          <p className="mb-8 text-xl text-gray-200">Join the CLKK revolution and experience seamless payments</p>
+          <p className="mb-8 text-xl text-gray-200">Join the CLKK revolution and unify your PayPal, Venmo, and digital payments</p>
           <Link to="/signup">
             <Button className="bg-gray-900 hover:bg-gray-800 transition-colors duration-300 text-lg px-8 py-6">
               Get Started Now
@@ -298,7 +298,7 @@ export default function CLKKFintechLanding() {
               <div className="inline-block">
                 <Logo className="scale-75 origin-left" />
               </div>
-              <p className="text-gray-400 mt-4">Revolutionizing payments.</p>
+              <p className="text-gray-400 mt-4">Your master wallet for all payments.</p>
             </div>
             <div className="w-full md:w-1/3 mb-8 md:mb-0">
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
