@@ -172,7 +172,7 @@ function CLKKAppDemo() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Fee</span>
-                  <span className="text-green-400">Free</span>
+                  <span className="text-white">$0.50</span>
                 </div>
                 <div className="border-t border-gray-700 pt-4">
                   <div className="flex justify-between">
@@ -266,20 +266,20 @@ export default function CLKKFintechLanding() {
 
   const faqs = [
     {
-      question: "How does CLKK connect to PayPal and Venmo?",
-      answer: "CLKK securely integrates with PayPal and Venmo through their official APIs, allowing you to send money directly from your CLKK master wallet to any PayPal or Venmo account."
+      question: "How does CLKK send money to PayPal and Venmo?",
+      answer: "CLKK securely sends money to PayPal and Venmo accounts through their official payment networks, allowing you to transfer funds directly from your CLKK wallet to any PayPal or Venmo account."
     },
     {
-      question: "Are there fees for sending to PayPal and Venmo?",
-      answer: "CLKK offers competitive rates for cross-platform transfers. Standard CLKK-to-CLKK transfers remain free, while PayPal and Venmo transfers have minimal fees."
+      question: "What are the fees for sending to PayPal and Venmo?",
+      answer: "CLKK-to-CLKK transfers are free. Transfers to PayPal and Venmo accounts have standard processing fees that are clearly displayed before you confirm any transaction."
     },
     {
       question: "How quickly do PayPal and Venmo transfers process?",
-      answer: "Transfers to PayPal and Venmo accounts are typically instant, though processing times may vary based on the receiving platform's policies."
+      answer: "Transfers from CLKK to PayPal and Venmo accounts are typically processed within minutes, though final availability may depend on the receiving platform's processing times."
     },
     {
       question: "Can I receive money from PayPal and Venmo in my CLKK wallet?",
-      answer: "Currently, CLKK supports sending money to PayPal and Venmo accounts. Receiving capabilities from these platforms are coming soon to complete the master wallet experience."
+      answer: "Currently, CLKK specializes in sending money to PayPal and Venmo accounts. You can receive money directly from other CLKK users instantly and for free."
     }
   ];
 
@@ -313,7 +313,7 @@ export default function CLKKFintechLanding() {
             <span className="shine-animation">Next-Generation Payments</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl">
-            Your master wallet for seamless payments. Send money to PayPal, Venmo, and any CLKK user instantly.
+            Your master wallet for seamless payments. Send money to any PayPal or Venmo account, plus instant transfers to CLKK users.
           </p>
           <Link to="/signup">
             <Button className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-6">
@@ -329,7 +329,7 @@ export default function CLKKFintechLanding() {
           <h2 className="mb-12 text-center text-4xl font-bold">Why Choose CLKK?</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Logo, title: "Master Wallet", description: "One wallet to rule them all - send to PayPal, Venmo, and more" },
+              { icon: Logo, title: "Master Wallet", description: "Send money to any PayPal or Venmo account from one unified wallet" },
               { icon: Smartphone, title: "User-Friendly", description: "Intuitive mobile app for seamless payments" },
               { icon: BarChart, title: "Business Insights", description: "Advanced analytics for informed decisions" },
               { icon: Shield, title: "Secure & Compliant", description: "Bank-grade security and regulatory compliance" }
@@ -365,7 +365,7 @@ export default function CLKKFintechLanding() {
               </div>
               <h3 className="text-xl font-bold mb-4">Instant Peer-to-Peer</h3>
               <p className="text-gray-300">
-                Send money to any PayPal or Venmo account instantly from your CLKK master wallet. Split bills across platforms effortlessly.
+                Send money from your CLKK wallet to any PayPal or Venmo account instantly. Split bills across platforms effortlessly.
               </p>
             </div>
 
@@ -385,7 +385,7 @@ export default function CLKKFintechLanding() {
               </div>
               <h3 className="text-xl font-bold mb-4">Universal Acceptance</h3>
               <p className="text-gray-300">
-                Connect to PayPal, Venmo, and CLKK's growing network. One wallet, unlimited possibilities.
+                Send to PayPal, Venmo, and CLKK's growing network. One wallet, unlimited reach.
               </p>
             </div>
           </div>
@@ -450,8 +450,8 @@ export default function CLKKFintechLanding() {
             <div className="w-full lg:w-1/2 space-y-4">
               {[
                 "Download the CLKK master wallet app",
-                "Connect your PayPal and Venmo accounts",
-                "Send money across platforms instantly",
+                "Add funds to your CLKK wallet",
+                "Send money to any PayPal or Venmo account",
                 "Manage all your payments from one place"
               ].map((step, index) => (
                 <div key={index} className="flex items-center space-x-4 bg-gray-700 p-4 rounded-lg">
@@ -496,7 +496,7 @@ export default function CLKKFintechLanding() {
       <section className="w-full py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="mb-8 text-4xl font-bold">Ready to Transform Your Payment Experience?</h2>
-          <p className="mb-8 text-xl text-gray-200">Join the CLKK revolution and unify your PayPal, Venmo, and digital payments</p>
+          <p className="mb-8 text-xl text-gray-200">Join the CLKK revolution and send money to PayPal, Venmo, and CLKK users from one wallet</p>
           <Link to="/signup">
             <Button className="bg-gray-900 hover:bg-gray-800 transition-colors duration-300 text-lg px-8 py-6">
               Get Started Now
