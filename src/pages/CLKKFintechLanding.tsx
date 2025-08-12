@@ -10,13 +10,236 @@ import {
   Brain,
   Wallet,
   Zap,
-  CreditCard
+  CreditCard,
+  Send,
+  ArrowRight,
+  Check
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Logo from "@/components/Logo"
 import QuickLinks from "@/components/QuickLinks"
 import { analyticsEvents } from "@/lib/firebase"
 import { saveIconAsPNG } from "@/utils/saveIcon"
+
+// Interactive CLKK App Demo Component
+function CLKKAppDemo() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [amount, setAmount] = useState("50");
+  const [recipient, setRecipient] = useState("john@paypal.com");
+  const [platform, setPlatform] = useState("PayPal");
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const steps = [
+    { title: "Enter Amount", description: "Type the amount you want to send" },
+    { title: "Choose Recipient", description: "Select PayPal or Venmo account" },
+    { title: "Send Money", description: "Tap to send instantly" },
+    { title: "Complete!", description: "Money sent successfully" }
+  ];
+
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentStep(currentStep + 1);
+        setIsAnimating(false);
+      }, 300);
+    } else {
+      // Reset demo
+      setCurrentStep(0);
+    }
+  };
+
+  const handlePlatformToggle = () => {
+    setPlatform(platform === "PayPal" ? "Venmo" : "PayPal");
+    setRecipient(platform === "PayPal" ? "@john-venmo" : "john@paypal.com");
+  };
+
+  return (
+    <div className="bg-gray-700 p-8 rounded-lg shadow-xl">
+      <div className="w-80 h-[600px] mx-auto bg-gray-900 rounded-3xl border-4 border-gray-600 p-6 flex flex-col relative overflow-hidden">
+        {/* Phone Status Bar */}
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex space-x-1">
+            <div className="w-1 h-1 bg-white rounded-full"></div>
+            <div className="w-1 h-1 bg-white rounded-full"></div>
+            <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
+          </div>
+          <div className="text-white text-sm font-medium">9:41</div>
+          <div className="flex space-x-1">
+            <div className="w-4 h-2 bg-white rounded-sm"></div>
+          </div>
+        </div>
+
+        {/* App Header */}
+        <div className="flex items-center justify-center mb-8">
+          <Logo showText={false} className="scale-50" />
+          <span className="text-white text-xl font-bold ml-2">CLKK</span>
+        </div>
+
+        {/* Demo Content */}
+        <div className={`flex-grow transition-all duration-300 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
+          {currentStep === 0 && (
+            <div className="space-y-6">
+              <h3 className="text-white text-lg font-semibold text-center">Send Money</h3>
+              <div className="bg-gray-800 rounded-lg p-4">
+                <label className="text-gray-400 text-sm">Amount</label>
+                <div className="flex items-center mt-2">
+                  <span className="text-white text-3xl font-bold">$</span>
+                  <input
+                    type="text"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="bg-transparent text-white text-3xl font-bold ml-2 outline-none flex-grow"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {['10', '25', '50', '100', '200', '500'].map((preset) => (
+                  <button
+                    key={preset}
+                    onClick={() => setAmount(preset)}
+                    className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-3 rounded-lg text-sm transition-colors"
+                  >
+                    ${preset}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {currentStep === 1 && (
+            <div className="space-y-6">
+              <h3 className="text-white text-lg font-semibold text-center">Choose Platform</h3>
+              <div className="space-y-4">
+                <button
+                  onClick={handlePlatformToggle}
+                  className={`w-full p-4 rounded-lg border-2 transition-all ${
+                    platform === "PayPal" 
+                      ? "border-blue-500 bg-blue-500/10" 
+                      : "border-gray-600 bg-gray-800"
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">PP</span>
+                    </div>
+                    <span className="text-white font-medium">PayPal</span>
+                  </div>
+                </button>
+                <button
+                  onClick={handlePlatformToggle}
+                  className={`w-full p-4 rounded-lg border-2 transition-all ${
+                    platform === "Venmo" 
+                      ? "border-blue-500 bg-blue-500/10" 
+                      : "border-gray-600 bg-gray-800"
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">V</span>
+                    </div>
+                    <span className="text-white font-medium">Venmo</span>
+                  </div>
+                </button>
+              </div>
+              <div className="bg-gray-800 rounded-lg p-4">
+                <label className="text-gray-400 text-sm">Recipient</label>
+                <input
+                  type="text"
+                  value={recipient}
+                  onChange={(e) => setRecipient(e.target.value)}
+                  className="w-full bg-transparent text-white mt-2 outline-none"
+                />
+              </div>
+            </div>
+          )}
+
+          {currentStep === 2 && (
+            <div className="space-y-6">
+              <h3 className="text-white text-lg font-semibold text-center">Confirm & Send</h3>
+              <div className="bg-gray-800 rounded-lg p-6 space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Amount</span>
+                  <span className="text-white font-bold">${amount}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">To</span>
+                  <span className="text-white">{recipient}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Platform</span>
+                  <span className="text-white">{platform}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Fee</span>
+                  <span className="text-green-400">Free</span>
+                </div>
+                <div className="border-t border-gray-700 pt-4">
+                  <div className="flex justify-between">
+                    <span className="text-white font-semibold">Total</span>
+                    <span className="text-white font-bold">${amount}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {currentStep === 3 && (
+            <div className="flex flex-col items-center justify-center space-y-6 text-center">
+              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
+                <Check className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-white text-lg font-semibold">Money Sent!</h3>
+              <p className="text-gray-400">
+                ${amount} sent to {recipient} via {platform}
+              </p>
+              <div className="text-green-400 text-sm">
+                ✓ Instant transfer completed
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Action Button */}
+        <div className="mt-6">
+          <button
+            onClick={handleNext}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+          >
+            {currentStep === 3 ? (
+              <>
+                <span>Try Again</span>
+              </>
+            ) : (
+              <>
+                <span>{currentStep === 2 ? 'Send Money' : 'Continue'}</span>
+                {currentStep === 2 ? <Send className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Step Indicator */}
+        <div className="flex justify-center space-x-2 mt-4">
+          {steps.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === currentStep ? 'bg-blue-500' : 'bg-gray-600'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Demo Description */}
+      <div className="mt-6 text-center">
+        <h4 className="text-white font-semibold mb-2">{steps[currentStep].title}</h4>
+        <p className="text-gray-300 text-sm">{steps[currentStep].description}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function CLKKFintechLanding() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -223,8 +446,8 @@ export default function CLKKFintechLanding() {
       <section id="how-it-works" className="w-full py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="mb-12 text-center text-4xl font-bold">How CLKK Works</h2>
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
-            <div className="w-full md:w-1/2 space-y-4">
+          <div className="flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0 lg:space-x-12">
+            <div className="w-full lg:w-1/2 space-y-4">
               {[
                 "Download the CLKK master wallet app",
                 "Connect your PayPal and Venmo accounts",
@@ -239,16 +462,8 @@ export default function CLKKFintechLanding() {
                 </div>
               ))}
             </div>
-            <div className="w-full md:w-1/2">
-              <div className="bg-gray-700 p-8 rounded-lg shadow-xl">
-                <div className="w-64 h-96 mx-auto bg-gray-800 rounded-3xl border-4 border-gray-600 p-4 flex flex-col justify-between">
-                  <div className="w-full h-4 bg-gray-600 rounded-full mb-4"></div>
-                  <div className="flex-grow flex items-center justify-center">
-                    <Logo className="scale-75" />
-                  </div>
-                  <div className="w-16 h-16 mx-auto bg-gray-600 rounded-full"></div>
-                </div>
-              </div>
+            <div className="w-full lg:w-1/2">
+              <CLKKAppDemo />
             </div>
           </div>
         </div>
